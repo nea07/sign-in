@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>textarea</title>
+  </head>
+  <body>
+    <script>
+      //  let textarea = document.createElement("textarea");
+      //  let p = document.createElement('p')
+
+      //  textarea.oninput = (e) => {
+      //     console.log(e.target.value)
+      //     localStorage.setItem('text', e.target.value)
+      //  }
+      //  p.innerHTML = 'salam'
+
+      //  document.body.append(textarea)
+      //  document.body.append(p)
+
+
+
+
+
+
+
+
+
+
+
+      
+      const chechUser = () => {
+        let emailValue = document.getElementById("email").value;
+        let passwordValue = document.getElementById("password").value;
+        if (emailValue === "admin" && passwordValue === "3922") {
+          alert("вы зарегистрировались");
+
+          let user = {
+            email: emailValue,
+            password: passwordValue,
+          };
+
+          localStorage.setItem("userValue", JSON.stringify(user));
+          initLogin();
+        } else {
+          alert("упс... попробуйте еще раз ;)");
+        }
+      };
+
+      const renderLogin = () => {
+        let email = document.createElement("input");
+        email.style.marginTop='300px'
+        email.style.marginLeft='160px'
+        email.style.borderRadius='20px'
+        email.id = "email";
+        let password = document.createElement("input");
+        password.style.marginLeft='200px'
+        password.style.borderRadius='20px'
+        password.type="password"
+        password.id= "password"
+
+        let emailLabel = document.createElement("label");
+        emailLabel.style.marginLeft='5px'
+        emailLabel.style.position='absolute'
+        emailLabel.style.marginTop='-20px'
+        emailLabel.style.fontSize='20px'
+        let passwordLabel = document.createElement("label");
+        passwordLabel.style.fontSize='20px'
+        passwordLabel.style.position='absolute'
+        passwordLabel.style.marginTop='-20px'
+        passwordLabel.style.marginLeft='2px'
+
+        let p = document.createElement("p");
+        let userValue = localStorage.getItem("userValue");
+        p.innerHTML = userValue;
+        console.log(userValue);
+
+        emailLabel.innerHTML = "ENTER EMAIL  :";
+
+        passwordLabel.innerHTML = "ENTER PASSWORD   :";
+
+        let button = document.createElement("button");
+      button.style.fontSize='15px'
+button.style.marginTop='5px'
+button.style.marginLeft='50px'
+      
+        button.innerHTML = "SIGN IN";
+        button.addEventListener("click", chechUser);
+
+        document.body.append(email);
+        document.body.append(document.createElement("br"));
+        document.body.append(emailLabel);
+        document.body.append(document.createElement("br"));
+        document.body.append(password);
+        document.body.append(document.createElement("br"));
+        document.body.append(passwordLabel);
+        document.body.append(document.createElement("br"));
+        document.body.append(button);
+        document.body.append(p);
+      };
+
+      const ini = () => {
+        let a = document.createElement('a');
+        a.style.textDecoration='none'
+        a.style.color='white'
+        a.style.textShadow='0px 0px 5px black'
+        a.style.fontSize='20px'
+        a.style.transform='rotate(360deg)'
+        a.style.transition='0.2s'
+        a.href = "https://www.instagram.com/reel/Cm_Lj2RKJvY/?igshid=MDJmNzVkMjY=";
+        a.innerHTML='click';
+        let s =document.body.append(a)
+        // localStorage.getItem("userValue")
+        //   ? document.body.innerHTML = ("добро пожаловать на главную страницу")
+        //   : renderLogin();
+      };
+
+      const initLogin = () => {
+        localStorage.getItem("userValue") ?ini() : renderLogin();
+      }
+
+      initLogin();
+    </script>
+  </body>
+</html>
